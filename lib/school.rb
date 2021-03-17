@@ -1,42 +1,69 @@
-# code here!
-#require 'pry'
+# require "pry"
+
+
 class School
-    attr_accessor :name, :roster
 
-    def initialize(name)
+    attr_accessor :name 
+
+    def initialize(name, roster=({}))
         @name = name
-        @roster = {}
+        @roster = roster
     end
-  
-    #def roster= (roster)
-      #  @roster = Hash.new
-    #end
 
-    def add_student(student_name, grade)
+    def roster
+        @roster = Hash.new
+    end
+
+    def roster
+        @roster
+    end
+
+
+    def add_student(name, grade)
         roster[grade] ||= []
-        roster[grade] << student_name
-    end   
-   
-
-    def grade(student_grade)
-        roster[student_grade]
+        roster[grade] << name
+        roster
     end
 
+    def grade(grade)
+        roster[grade]
+        # binding.pry
+    end
+
+    
     def sort
         sorted = {}
-        roster.each do |grade,students|
+        roster.map do |grade, students|
             sorted[grade] = students.sort
         end
         sorted
+            
+
+        # binding.pry
     end
+
+
 end
 
 
+school = School.new("Bayside High School")
+
+school.add_student("Homer Simpson", 9)
+school.add_student("Bart Simpson", 9)
+school.add_student("Avi Flombaum", 10)
+school.add_student("Jeff Baird", 10)
+school.add_student("Blake Johnson", 7)
+school.add_student("Jack Bauer", 7)
 
 
-#binding.pry
+school.roster
+school.sort
 
-#school = School.new("Bayside High School")
+
+
+
+# binding.pry
+
 
 
 
